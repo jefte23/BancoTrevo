@@ -73,13 +73,37 @@
 
 
 
+
     <div class="container">
 		<div class="row">
             <div class="col-xs-6  marcador">
         		<h3 align="center">Bem vindo, <%=c.getNomeCliente() %></h3>
             </div>
             <div class="col-xs-6  marcador">
-              	<h1 align="center">Conteúdo do site1</h1>
+            <h3 align="center">As contas correntes em seu nome</h3>
+            
+            <table class="table table-bordered table-hover">
+			      <thead align="center">
+			        <tr>
+			          <th>Conta</th>
+			          <th>Agencia</th>
+			        </tr>
+			      </thead>
+		    <%
+				List<Conta> contas = (List<Conta>) request.getAttribute("conta");
+				for (int i = 0; i< contas.size();i++){
+			%>
+
+			 	<tbody>
+	             	<tr >
+						<td align="center"> <%=contas.get(i).getNumeroConta() %> </td>
+						<td align="center"> <%=contas.get(i).getNumeroConta() %> </td>
+					</tr>
+				</tbody>
+		<%
+			}
+		%>
+		</table>
             </div>
         </div> <!-- Fim row 1 -->
         
