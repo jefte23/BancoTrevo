@@ -50,16 +50,17 @@
         <div class="collapse navbar-collapse" id="barra-navegacao">
 
           <ul class="nav navbar-nav navbar-right">
+            <li> </li>
             <li> <a href="#">empresa</a> </li>
-            <li> <a  href="contas?cpfcliente=<%=c.getCpfCliente() %>&senhacliente=<%=c.getSenhaCLiente()%>">Conta Corrente</a> </li>
-			 
+            <li> <a href="#">Aplicações</a> </li>
+ 
             <li class="dropdown"> 
              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user glyphicon"></span>  
                 </a> 
              
               <ul class="dropdown-menu">
-                <li> <a href="#"><%= c.getNomeCliente() %></a> </li>
+                <li> <a href="login?cpfcliente=<%=c.getCpfCliente() %>&senhacliente=<%=c.getSenhaCLiente()%>"><%=c.getNomeCliente() %></a></li>
                 <li> <a href="#">Editar perfil</a> </li>
                 <li> <a href="http://localhost:8080/BancoTrevo/index.html">Sair</a> </li>
               </ul>
@@ -80,11 +81,33 @@
             </div>
 
             <div class="col-xs-6  marcador">
-            <h3 align="center"></h3>
+            <h3 align="center">As contas correntes em seu nome</h3>
             
+            <table class="table table-bordered table-hover">
+			      <thead align="center">
+			        <tr>
+			          <th>Conta</th>
+			          <th>Agencia</th>
+			        </tr>
+			      </thead>
+		    <%
+				List<Conta> contas = (List<Conta>) request.getAttribute("conta");
+				for (int i = 0; i< contas.size();i++){
+			%>
 
-
-<!-- Fim row 1 -->
+			 	<tbody>
+	             	<tr >
+						<td align="center"> <%=contas.get(i).getNumeroConta() %> </td>
+						<td align="center"> <%=contas.get(i).getNumeroConta() %> </td>
+					</tr>
+				</tbody>
+				<%
+					}
+				%>
+				</table>
+				</section>
+            </div>
+        </div> <!-- Fim row 1 -->
         
  	<div class="row">
        	<div class="col-xs-6  marcador">

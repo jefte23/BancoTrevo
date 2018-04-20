@@ -73,7 +73,7 @@ public class ServletContas extends HttpServlet {
 			// rd.forward(request, response);
 
 			// Repassar o request/respose para o JSP
-			RequestDispatcher rd = request.getRequestDispatcher("loginSucesso.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("dadosCliente.jsp");
 
 			rd.forward(request, response);
 
