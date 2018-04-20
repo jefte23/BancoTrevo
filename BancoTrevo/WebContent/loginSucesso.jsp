@@ -27,6 +27,15 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    	<!-- Confirmação de saida : https://www.devmedia.com.br/forum/janela-de-confirmacao-com-javascript/568152 -->
+    <script>
+		function confirmaSaida() {
+		   if (confirm("Tem certeza que deseja Sair do perfil?")) {
+		      location.href="http://localhost:8080/BancoTrevo/index.html";
+		   }
+		}
+	</script>
   </head>
   <body>
   
@@ -61,7 +70,7 @@
               <ul class="dropdown-menu">
                 <li> <a href="#"><%= c.getNomeCliente() %></a> </li>
                 <li> <a href="#">Editar perfil</a> </li>
-                <li> <a href="http://localhost:8080/BancoTrevo/index.html">Sair</a> </li>
+                <li> <a href="#" onclick="confirmaSaida()" >Sair</a> </li>
               </ul>
             </li>
           </ul>
