@@ -51,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="index.html" class="navbar-brand">
+         <a  href="login?cpfcliente=<%=c.getCpfCliente() %>&senhacliente=<%=c.getSenhaCLiente()%>" class="navbar-brand">
           	<span class="img-logo"></span>
           </a>
         </div>
