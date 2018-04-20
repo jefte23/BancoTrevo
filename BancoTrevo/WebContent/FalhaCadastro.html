@@ -21,7 +21,7 @@
   </head>
   <body>
   
-    <!-- Barra navegação -->
+    <!-- Barra navega��o -->
     <nav class="navbar navbar-default navbar-transparente ">
       <div class="container">
         
@@ -45,7 +45,7 @@
             <li> <a href="#">empresa</a> </li>
             <li> <a href="#">clientes</a> </li>
             <li> <a href="#">produtos</a> </li>
-
+           
             <li class="dropdown"> 
             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user glyphicon"></span>  
@@ -98,10 +98,6 @@
 				          </div>
 				       </form>
 	               </li>
-
-
-
-           
           </ul>
         </div>
       </div>
@@ -112,18 +108,22 @@
 	<!-- Cabeçalho da pagina -->
 	<div class="container">
       <div class="page-header">
-          <h1>Cadastro de Usuario</h1>
+          <h1>Cadastro de Usuário</h1>
       </div>
     </div>
 
 
 	<!-- Div - formatação para tela de cadastro -->
 	    <div class="row">
-	    	<div class="col-sm-1">
-	     		<h1></h1>
-     		</div>
+	    <div class="col-sm-1">
+	    </div>
+	    	<div class="col-sm-4">
+				<h3> Cadastro já existente no Banco de dados</h3>
+				
+				<h4> Entre com seus dados ou faça cadastre com outro login</h4>
+			</div>
      	 
-    	<div class="col-sm-4">
+    	<div class="col-sm-6">
 	
 			<!-- Formulário de cadastro -->
 		    <form action="cadastro">
@@ -133,6 +133,11 @@
 		            <input type="text" class="form-control" name="nomecliente" id="nomecliente" placeholder="infome seu nome completo">
 		        </div>
 		        
+		        <div class="form-group">
+		            <label for="emailcliente">E-mail</label>
+		            <input type="email" class="form-control" id="emailcliente" name="emailcliente" placeholder="seuemail@servidor.com">  
+		        </div>
+		
 		        <div class="form-group">
 		            <label for="cpfcliente">CPF</label>
 		            <input type="text" class="form-control" id="cpfcliente" name="cpfcliente" placeholder="00.000.000-00">  
