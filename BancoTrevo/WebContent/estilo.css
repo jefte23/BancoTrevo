@@ -2,8 +2,7 @@
 
 /* --- Corpo da página --- */
 body {
-	background: url('imagens/capa.png'),
-				linear-gradient(60deg,#90EE90,#DCDCDC, 0.6);
+	background: linear-gradient(60deg,#90EE90,#DCDCDC);
 	background-attachment: fixed;
 	font-family: Helvetica,Arial,sans-serif;
 	overflow-x: hidden;

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="com.sun.xml.internal.ws.api.ha.StickyFeature"%>
 <%@page import="java.util.*"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="dao.*"%>
 <%@page import="control.*"%>
-<%@page import="model.*"%>
+<%@page import="model.Cliente"%>
+<%@page import="model.Conta"%>
+<%@page import="model.Transacao"%>
+
 
 <% Cliente c = (Cliente) request.getAttribute("cliente"); %>
 
@@ -135,12 +139,25 @@
         </div> <!-- Fim row 1 -->
         
  	<div class="row">
-       	<div class="col-xs-6  marcador">
-              <h1 align="center"></h1>
-            </div>
-            <div class="col-xs-6  marcador">
-              <h1 align="center"></h1>
-            </div> <!-- Fim row 2 -->
+       	<div class="col-xs-3  marcador">
+        	<h1 align="center"></h1>
+        </div>
+        <div class="col-xs-6  marcador">
+        	<h1 align="center">Transações Bancarias</h1>
+        	<h3>Valor Disponivel: <Span></Span> Sem transações	</h3>
+            	
+        	
+        	<br><br>
+        	<h3>Conta Ainda Sem Transações</h3>        	
+        	
+        	
+        	<br>br><br><br><br>
+        	
+        </div> <!-- Fim row 2 -->
+            
+        <div class="col-xs-3  marcador">
+        	<h1 align="center"></h1>
+        </div>
      </div>
       </div>
     

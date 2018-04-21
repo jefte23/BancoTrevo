@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="com.sun.xml.internal.ws.api.ha.StickyFeature"%>
 <%@page import="java.util.*"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="dao.*"%>
 <%@page import="control.*"%>
-<%@page import="model.*"%>
+<%@page import="model.Cliente"%>
+<%@page import="model.Conta"%>
+<%@page import="model.Transacao"%>
+
 
 <% Cliente c = (Cliente) request.getAttribute("cliente"); %>
 
@@ -135,12 +139,49 @@
         </div> <!-- Fim row 1 -->
         
  	<div class="row">
-       	<div class="col-xs-6  marcador">
-              <h1 align="center"></h1>
-            </div>
-            <div class="col-xs-6  marcador">
-              <h1 align="center"></h1>
-            </div> <!-- Fim row 2 -->
+       	<div class="col-xs-3  marcador">
+        	<h1 align="center"></h1>
+        </div>
+        <div class="col-xs-6  marcador">
+        	<h1 align="center">Transações Bancarias</h1>
+        	<%float extrato = (float) request.getAttribute("extratoConta"); %>
+        	
+        	<br><br>
+        	<h3>Valor Disponivel: <Span></Span><%=extrato %>	</h3>
+            	
+            	<table class="table table-bordered table-hover">
+			      <thead align="center">
+			        <tr>
+			          <th>Data Transação</th>
+			          <th>Tipo Transação</th>
+			          <th>Valor Transação</th>
+			        </tr>
+			      </thead>        	
+			      
+			      		    <%
+				List<Transacao> transacaos = (List<Transacao>) request.getAttribute("transacoes");
+				for (int i = 0; i< transacaos.size();i++){
+			%>
+
+			 	<tbody>
+	             	<tr >
+						<td align="center"> <%=transacaos.get(i).getDataTransacao() %> </td>
+						<td align="center"> <%=transacaos.get(i).getTipoTransacao() %> </td>
+						<td align="center"> <%=transacaos.get(i).getValorTransacao() %> </td>
+					</tr>
+				</tbody>
+				<%
+					}
+				%>
+				</table>
+        	
+
+        	
+        </div> <!-- Fim row 2 -->
+            
+        <div class="col-xs-3  marcador">
+        	<h1 align="center"></h1>
+        </div>
      </div>
       </div>
     

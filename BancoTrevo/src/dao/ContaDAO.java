@@ -58,6 +58,7 @@ public class ContaDAO {
 
 		// Verifica se conta Existe para esté cliente
 		try {
+
 			// Prepara o SQL
 			String sql = "SELECT idcliente, idconta, numeroconta, agenciaconta, tipoconta FROM banco.conta WHERE idcliente = ?";
 			ps = conexao.prepareStatement(sql);
