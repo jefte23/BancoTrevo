@@ -2,6 +2,7 @@ package control;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ import model.Cliente;
  */
 @WebServlet("/login")
 public class ServletLogin extends HttpServlet {
+	public static final String CLIENTE_SESSION = "cliente";
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -36,6 +38,14 @@ public class ServletLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		doPost(request, response);
+
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
 		// Recuperar os parametros
 		String cpfCliente = request.getParameter("cpfcliente");
 		String senhaCliente = request.getParameter("senhacliente");
@@ -52,7 +62,7 @@ public class ServletLogin extends HttpServlet {
 			Cliente c = cd.getCliente(cpfCliente, senhaCliente);
 
 			// Criar atributo novo
-			request.setAttribute("cliente", c);
+			request.getSession().setAttribute(CLIENTE_SESSION, c);
 
 			// Repassar o request/respose para o JSP
 			RequestDispatcher rd = request.getRequestDispatcher("loginSucesso.jsp");
@@ -66,7 +76,6 @@ public class ServletLogin extends HttpServlet {
 			rd.forward(request, response);
 
 		}
-
 	}
 
 }

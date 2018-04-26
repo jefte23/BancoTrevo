@@ -5,7 +5,7 @@
 <%@page import="control.*"%>
 <%@page import="model.*"%>
 
-<% Cliente c = (Cliente) request.getAttribute("cliente"); %>
+<% Cliente c = (Cliente) request.getSession().getAttribute("cliente"); %>
 
 <!doctype html>
 <html lang="pt-br">
@@ -60,7 +60,7 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li> <a href="#">empresa</a> </li>
-            <li> <a  href="contas?cpfcliente=<%=c.getCpfCliente() %>&senhacliente=<%=c.getSenhaCLiente()%>">Conta Corrente</a> </li>
+            <li> <a  href="contas">Conta Corrente</a> </li>
 			 
             <li class="dropdown"> 
              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -9,7 +9,7 @@
 <%@page import="model.Transacao"%>
 
 
-<% Cliente c = (Cliente) request.getAttribute("cliente"); %>
+<% Cliente c = (Cliente) request.getSession().getAttribute(ServletLogin.CLIENTE_SESSION); %>
 
 <!doctype html>
 <html lang="pt-br">
@@ -58,7 +58,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-         <a  href="login?cpfcliente=<%=c.getCpfCliente() %>&senhacliente=<%=c.getSenhaCLiente()%>" class="navbar-brand">
+         <a  href="loginSucesso.jsp" class="navbar-brand">
           	<span class="img-logo"></span>
           </a>
         </div>
@@ -76,7 +76,7 @@
                 </a> 
              
               <ul class="dropdown-menu">
-                <li> <a href="login?cpfcliente=<%=c.getCpfCliente() %>&senhacliente=<%=c.getSenhaCLiente()%>"><%=c.getNomeCliente() %></a></li>
+                <li> <a href="loginSucesso.jsp"><%=c.getNomeCliente() %></a></li>
                 <li> <a href="#">Editar perfil</a> </li>
                 <li> <a href="#" onclick="confirmaSaida()">Sair</a> </li>
               </ul>
@@ -114,17 +114,10 @@
 			 	<tbody>
 	             	<tr >
 						<td align="center">
-							<a href="transacao?idconta=<%=contas.get(i).getIdConta() %>
-								&idcliente=<%=contas.get(i).getIdCliente()%>&cpfcliente=<%=c.getCpfCliente() %>
-								&senhacliente=<%=c.getSenhaCLiente()%>"> 
-									<%=contas.get(i).getNumeroConta() %> 
-							</a>
+							<a href="transacao?idconta=<%=contas.get(i).getIdConta()%>"><%=contas.get(i).getNumeroConta() %></a>
 						</td>
-							<td align="center"> <a href="transacao?idconta=<%=contas.get(i).getIdConta() %>
-								&idcliente=<%=contas.get(i).getIdCliente()%>&cpfcliente=<%=c.getCpfCliente() %>
-								&senhacliente=<%=c.getSenhaCLiente()%>">
-									<%=contas.get(i).getNumeroConta() %> 
-							</a>
+						<td align="center"> 
+							<a href="transacao?idconta=<%=contas.get(i).getIdConta()%>"><%=contas.get(i).getNumeroConta() %></a>
 						</td>
 
 
@@ -134,9 +127,14 @@
 					}
 				%>
 				</table>
-				</section>
+
             </div>
-        </div> <!-- Fim row 1 -->
+        </div>
+	</div>
+</section>
+   
+        
+       <!-- Fim row 1 -->
         
  	<div class="row">
        	<div class="col-xs-3  marcador">
@@ -183,7 +181,6 @@
         	<h1 align="center"></h1>
         </div>
      </div>
-      </div>
     
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

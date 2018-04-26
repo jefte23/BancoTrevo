@@ -43,29 +43,23 @@ public class ServeletTransacao extends HttpServlet {
 
 		// Recuperar os parametros
 		int idconta = Integer.parseInt(request.getParameter("idconta"));
-		int idcliente = Integer.parseInt(request.getParameter("idcliente"));
-		String cpfCliente = request.getParameter("cpfcliente");
-		String senhaCliente = request.getParameter("senhacliente");
 
+		Cliente c = (Cliente) request.getSession().getAttribute(ServletLogin.CLIENTE_SESSION);
+		
 		// Obter uma conexao com o BD
 		Connection conexao = Conexao.getConexao();
 
 		// Instanciar objeto ClienteDAO
-		ClienteDAO c = new ClienteDAO(conexao);
-
-		// Instanciar objeto ClienteDAO
 		ContaDAO cd = new ContaDAO(conexao);
 
+		// Obter contas
+		ArrayList<Conta> conta = cd.getConta(c.getIdCliente());
+		
+		
 		// Verificar se o usuario é valido
 		if (cd.isContaCliente(idconta)) {
 
 			TransacaoDAO td = new TransacaoDAO(conexao);
-
-			// Obetem Cliente
-			Cliente cliente = c.getCliente(cpfCliente, senhaCliente);
-
-			// Obter contas
-			ArrayList<Conta> conta = cd.getConta(idcliente);
 
 			// Obtet transações da conta solicitada
 			ArrayList<Transacao> transacoes = td.getConta(idconta);
@@ -84,7 +78,6 @@ public class ServeletTransacao extends HttpServlet {
 			}
 
 			// Criar atributo novo
-			request.setAttribute("cliente", cliente);
 			request.setAttribute("conta", conta);
 			request.setAttribute("transacoes", transacoes);
 			request.setAttribute("extratoConta", extratoConta);
@@ -96,14 +89,7 @@ public class ServeletTransacao extends HttpServlet {
 
 		} else {
 
-			// Obetem Cliente
-			Cliente cliente = c.getCliente(cpfCliente, senhaCliente);
-
-			// Obter contas
-			ArrayList<Conta> conta = cd.getConta(idcliente);
-
 			// Criar atributo novo
-			request.setAttribute("cliente", cliente);
 			request.setAttribute("conta", conta);
 
 			// Repassar o request/respose para o JSP

@@ -38,52 +38,34 @@ public class ServletContas extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Recuperar os parametros
-		String cpfCliente = request.getParameter("cpfcliente");
-		String senhaCliente = request.getParameter("senhacliente");
 
 		// Obter uma conexao com o BD
 		Connection conexao = Conexao.getConexao();
 
-		// Instanciar objeto ClienteDAO
-		ClienteDAO cd = new ClienteDAO(conexao);
+		Cliente c = (Cliente) request.getSession().getAttribute(ServletLogin.CLIENTE_SESSION);
+		
 
-		// Verificar se o usuario é valido
-		if (cd.isCliente(cpfCliente, senhaCliente)) {
+		// Instanciar objeto ContaDAO
+		ContaDAO cc = new ContaDAO(conexao);
 
-			// Instanciar objeto ContaDAO
-			ContaDAO cc = new ContaDAO(conexao);
+		// Obter cliente
+		
+		// Recuperar os parametros
+		int idcliente = c.getIdCliente();
 
-			// Obter cliente
-			Cliente c = cd.getCliente(cpfCliente, senhaCliente);
+		// Obter conta
+		ArrayList<Conta> contas = cc.getConta(idcliente);
 
-			// Recuperar os parametros
-			int idcliente = c.getIdCliente();
+		// Criar atributo novo
+		request.setAttribute("conta", contas);
 
-			// Obter conta
-			ArrayList<Conta> contas = cc.getConta(idcliente);
+		// rd.forward(request, response);
 
-			// Criar atributo novo
-			request.setAttribute("cliente", c);
-			request.setAttribute("conta", contas);
+		// Repassar o request/respose para o JSP
+		RequestDispatcher rd = request.getRequestDispatcher("dadosCliente.jsp");
 
-			// Repassar o request/respose para o JSP
-			// RequestDispatcher rd = request.getRequestDispatcher("loginSucesso.jsp");
+		rd.forward(request, response);
 
-			// rd.forward(request, response);
-
-			// Repassar o request/respose para o JSP
-			RequestDispatcher rd = request.getRequestDispatcher("dadosCliente.jsp");
-
-			rd.forward(request, response);
-
-		} else {
-			// Repassar o request/respose para o JSP
-			RequestDispatcher rd = request.getRequestDispatcher("loginFailed.html");
-
-			rd.forward(request, response);
-
-		}
 
 	}
 }
