@@ -93,12 +93,11 @@
     <div class="container">
 		<div class="row">
             <div class="col-xs-6  marcador">
-        		<h3 align="center"></h3>
+            	<h3 align="center"><%=c.getNomeCliente() %>, As contas correntes em seu nome</h3>
             </div>
 
             <div class="col-xs-6  marcador">
-            <h3 align="center"><%=c.getNomeCliente() %>, As contas correntes em seu nome</h3>
-            
+                    
             <table class="table table-bordered table-hover">
 			      <thead align="center">
 			        <tr>
@@ -170,11 +169,7 @@
 						<td align="center"> <%=transacaos.get(i).getTipoTransacao() %> </td>
 						<td align="center"> <%=transacaos.get(i).getValorTransacao() %> </td>
 				
-							<%
-								idconta = transacaos.get(i).getIdConta();
-							%>
-				
-				
+					
 					</tr>
 				</tbody>
 				

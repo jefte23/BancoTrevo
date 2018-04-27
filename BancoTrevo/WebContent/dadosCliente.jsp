@@ -87,46 +87,135 @@
 	<!-- ------------------ Inicio da Pagina ------------------ -->
    <section id="servicos">
     <div class="container">
-		<div class="row">
+    <div class="row">
             <div class="col-xs-6  marcador">
-        		<h3 align="center">Bem vindo, <%=c.getNomeCliente() %></h3>
+            <h3 align="center">Bem vindo, <%=c.getNomeCliente() %></h3>
             </div>
 
-            <div class="col-xs-6  marcador">
-            <h3 align="center">As contas correntes em seu nome</h3>
+        <div class="col-xs-6  marcador">
             
-            <table class="table table-bordered table-hover">
-			      <thead align="center">
-			        <tr>
-			          <th>Conta</th>
-			          <th>Agencia</th>
-			        </tr>
-			      </thead>
-		    <%
-				List<Conta> contas = (List<Conta>) request.getAttribute("conta");
-				for (int i = 0; i< contas.size();i++){
-			%>
+                    
+        <!-- Criação das abas -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a href="#conta" role="tab" data-toggle="tab">Contas Corrente</a></li>
+          <li><a href="#transacao" role="tab" data-toggle="tab">Debito/Credito</a></li>
+          <li><a href="#abrirconta" role="tab" data-toggle="tab">Abrir Conta</a></li>
+        </ul>
+        
+        <!-- Conteúdo das abas -->
+        <div class="tab-content">
 
-			 	<tbody>
-	             	<tr >
-						<td align="center">
-							<a href="transacao?idconta=<%=contas.get(i).getIdConta() %>"><%=contas.get(i).getNumeroConta() %></a>
-						</td>
-							<td align="center">
-							<a href="transacao?idconta=<%=contas.get(i).getIdConta() %>"><%=contas.get(i).getAgenciaConta() %></a>
-						</td>
+              <!-- Conteudo da Aba conta corrente-->
+              <div class="tab-pane active" role="taappanel" id="conta"> 
+                <h3>Contas em seu nome: </h3>
+                <table class="table table-bordered table-hover">
+                  <thead align="center">
+                    <tr>
+                      <th>Conta</th>
+                      <th>Agencia</th>
+                    </tr>
+                  </thead>
 
+                     <%
+                      List<Conta> contas = (List<Conta>) request.getAttribute("conta");
+                      for (int i = 0; i< contas.size();i++){
+                     %>
+    
+                <tbody>
+                  <tr >
+                    <td align="center">
+                      <a href="transacao?idconta=<%=contas.get(i).getIdConta() %>"><%=contas.get(i).getNumeroConta() %></a>
+                    </td>
+                      <td align="center">
+                      <a href="transacao?idconta=<%=contas.get(i).getIdConta() %>"><%=contas.get(i).getAgenciaConta() %></a>
+                    </td>
+                  </tr>
+                </tbody>
 
-					</tr>
-				</tbody>
-				<%
-					}
-				%>
-				</table>
-				</div>
+                  <% } %>
+              </table>
+
+              </div>
+
+              <!-- Conteudo da Aba Debito/Credito -->            
+
+              <div class="tab-pane" role="taappanel" id="transacao">
+               <h3>Realizar Transação</h3>
+               
+               <form action="cadastroTransacao">
+
+               <label for="selecionaConta">Conta Corrente</label>
+
+				<select name="idconta">
+	                <%
+						List<Conta> conta = (List<Conta>) request.getAttribute("conta");
+						for (int i = 0; i< contas.size();i++){
+					%>
+						<option value="<%=conta.get(i).getIdConta()%>" class="form-control" >
+							<%=conta.get(i).getNumeroConta() %>   |   <%=conta.get(i).getAgenciaConta() %>
+						</option>					
+	               <%} %>
+				</select>
+
+            <div class="form-group">
+               <label for="dataTransacao">Data</label>
+               <input type="date" class="form-control" name="datatransacao" id="datatransacao">
             </div>
+            <div class="form-group">
+                <label for="valortransacao">Valor da transação</label>
+                <input type="number" class="form-control" id="valortrasacao" name="valortransacao" placeholder="000.00">  
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" value="d" name="tipotransacao">Débito
+              </label>
+
+              <label>
+                <input type="radio" value="c" name="tipotransacao">Credito
+              </label>
+            </div>
+            
+            <br>
+            <button type="submit" class="btn btn-default">Cadastrar</button>
+          </form>
+                
+              </div>
+
+
+            <!-- Conteudo da Aba Abrir conta -->
+              <div class="tab-pane" role="taappanel" id="abrirconta">
+               
+                <h3>Abertura de Conta</h3>
+                	
+                	<form action="cadastraConta">
+	             	        <div class="form-group">
+				               <label for="numeroconta">Conta</label>
+				               <input type="text" class="form-control" name="numeroconta" id="numeroconta" placeholder="0000-d">
+				            </div>
+				            <div class="form-group">
+				                <label for="agenciaconta">Agência: </label>
+				                <input type="text" class="form-control" id="agenciaconta" name="agenciaconta" placeholder="00000-d">  
+				            </div>
+				            <div class="radio">
+				              <label>
+				                <input type="radio" value="cc" name="tipoconta">Conta Corrente
+				              </label>
+				
+				              <label>
+				                <input type="radio" value="cp" name="tipoconta">Conta Polpança
+				              </label>
+				            </div>
+				            
+				            <br>
+				            <button type="submit" class="btn btn-default">Cadastrar</button>
+			          </form>
+			        
+              </div>
         </div>
-				</section>
+      </div>
+    </div>
+  </div>
+</section>
  <!-- Fim row 1 -->
         
 <br><br><br><br><br><br>
@@ -167,13 +256,23 @@
             </ul>
           </div>
 
-        </div><!-- /row -->
+        </div>
+              <!-- /row -->
       </div>
     </footer>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+    <script type="text/javascript">
+       $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="popover"]').popover()
+
+        e.preventDefault()
+        $(this).tab('show')
+      })
+    </script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>

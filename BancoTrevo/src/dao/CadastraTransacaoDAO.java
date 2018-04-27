@@ -22,20 +22,15 @@ public class CadastraTransacaoDAO {
 		// Instanciar os objetos
 		PreparedStatement ps = null;
 		boolean resultado = false;
-
-		System.out.println(datatransacao);
-		System.out.println(tipotransacao);
-		System.out.println(valortransacao);
-		System.out.println(idconta);
+	
 		
-		
-		// Verificar se o cliente existe no BD
 		try {
 
 			// Preparar o SQL
 			String sql = "INSERT INTO `banco`.`transacao` (`datatransacao`, `tipotransacao`, `valortransacao`, `idconta`) VALUES (?, ?, ?, ?);";
 			ps = conexao.prepareStatement(sql);
 
+			
 			// Setar os parametros do SQL
 			ps.setDate(1, java.sql.Date.valueOf(datatransacao));
 			ps.setString(2, tipotransacao);

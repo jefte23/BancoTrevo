@@ -66,7 +66,7 @@ public class TransacaoDAO {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 			// Prepara o SQL
-			String sql = "SELECT * FROM banco.transacao WHERE idconta = ?";
+			String sql = "SELECT * FROM banco.transacao WHERE idconta = ? order by datatransacao";
 			ps = conexao.prepareStatement(sql);
 
 			// Seta o parametro do SQL
