@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,8 +44,7 @@ public class ServletCadastroTransacao extends HttpServlet {
 		LocalDate datatransacao = LocalDate.parse(request.getParameter("datatransacao"), formatter);
 		String tipotransacao = request.getParameter("tipotransacao");
 		float valortransacao = Float.parseFloat(request.getParameter("valortransacao"));
-		
-		Conta ct = (Conta) request.getSession().getAttribute(ServeletTransacao.CONTA_SESSION);
+		int idconta = Integer.parseInt(request.getParameter("idconta"));
 		
 		// Recuperar os parametros
 		Connection conexao = Conexao.getConexao();
@@ -52,9 +52,15 @@ public class ServletCadastroTransacao extends HttpServlet {
 		// Instanciar objeto ClienteDAO
 		CadastraTransacaoDAO c = new CadastraTransacaoDAO(conexao);
 		
-		c.getCadastro(datatransacao, tipotransacao, valortransacao, ct.getIdConta());
+		c.getCadastro(datatransacao, tipotransacao, valortransacao, idconta);
 		
-		
+		if (c.getCadastro(datatransacao, tipotransacao, valortransacao, idconta)) {
+			
+			RequestDispatcher rd = request.getRequestDispatcher("transacaoCadastrada.jsp");
+		}else {
+			
+			RequestDispatcher rd = request.getRequestDispatcher("SemExtrato.jsp");
+		}
 		
 		
 		

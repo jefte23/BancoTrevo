@@ -56,12 +56,6 @@ public class ServeletTransacao extends HttpServlet {
 		// Obter contas
 		ArrayList<Conta> conta = cd.getConta(c.getIdCliente());
 		
-	
-		// Obtem conta selecionada
-		Conta ct = cd.getUnicaConta(idconta);
-			
-		request.getSession().setAttribute(CONTA_SESSION, ct);		
-			
 		TransacaoDAO td = new TransacaoDAO(conexao);
 
 		// Obtet transações da conta solicitada
@@ -90,18 +84,5 @@ public class ServeletTransacao extends HttpServlet {
 
 			rd.forward(request, response);
 
-/*		} else {
-
-			// Criar atributo novo
-			request.setAttribute("conta", conta);
-
-			// Repassar o request/respose para o JSP
-			RequestDispatcher rd = request.getRequestDispatcher("SemExtrato.jsp");
-
-			rd.forward(request, response);
-
-		}
-*/
 	}
-
 }

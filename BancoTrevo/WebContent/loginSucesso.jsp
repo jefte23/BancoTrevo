@@ -51,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-         <a  href="login?cpfcliente=<%=c.getCpfCliente() %>&senhacliente=<%=c.getSenhaCLiente()%>" class="navbar-brand">
+         <a  href="loginSucesso" class="navbar-brand">
           	<span class="img-logo"></span>
           </a>
         </div>
@@ -89,21 +89,24 @@
             </div>
 
             <div class="col-xs-6  marcador">
-            <h3 align="center"></h3>
-            
-
+            	<h3 align="center"></h3>
+       		</div>  
+		</div>
+	</div>
+ </section>
 
 <!-- Fim row 1 -->
-        
+
+<section id="servicos">        
  	<div class="row">
        	<div class="col-xs-6  marcador">
               <h1 align="center"></h1>
-            </div>
-            <div class="col-xs-6  marcador">
+         </div>
+         <div class="col-xs-6  marcador">
               <h1 align="center"></h1>
-            </div> <!-- Fim row 2 -->
-     </div>
-      </div>
+         </div> <!-- Fim row 2 -->
+	</div>
+</section>
     
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

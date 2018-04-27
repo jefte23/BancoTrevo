@@ -102,6 +102,7 @@
             <table class="table table-bordered table-hover">
 			      <thead align="center">
 			        <tr>
+			          <th>nº</th>
 			          <th>Conta</th>
 			          <th>Agencia</th>
 			        </tr>
@@ -113,6 +114,10 @@
 
 			 	<tbody>
 	             	<tr >
+	             		<td align="center">
+							<a href="transacao?idconta=<%=contas.get(i).getIdConta()%>"><%=contas.get(i).getIdConta() %></a>
+						</td>
+	             	
 						<td align="center">
 							<a href="transacao?idconta=<%=contas.get(i).getIdConta()%>"><%=contas.get(i).getNumeroConta() %></a>
 						</td>
@@ -190,7 +195,20 @@
         <div class="col-xs-4  marcador">
         	<h2 align="center">Cadastrar Transação</h2>
         	
-          <form action="cadastroOperacao">
+          <form action="cadastroTransacao">
+
+            <div class="form-group">
+               <label for="selecionaConta">Data</label>
+                <%
+					List<Conta> conta = (List<Conta>) request.getAttribute("conta");
+					for (int i = 0; i< contas.size();i++){
+				%>
+				<select multiple="multiple">
+					<option value="<%conta.get(i).getIdConta();%>" class="form-control" name="idconta"><%=conta.get(i).getIdConta() %></option>					
+				</select>
+               <%} %>
+            </div>
+
 
             <div class="form-group">
                <label for="dataTransacao">Data</label>
