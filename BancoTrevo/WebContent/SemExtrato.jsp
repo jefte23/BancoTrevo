@@ -142,14 +142,14 @@
         </div>
         <div class="col-xs-6  marcador">
         	<h1 align="center">Transações Bancarias</h1>
-        	<h3>Valor Disponivel: <Span></Span> Sem transações	</h3>
+        	<h3 align="center">Valor Disponivel: <Span></Span> Sem transações	</h3>
             	
         	
         	<br><br>
-        	<h3>Conta Ainda Sem Transações</h3>        	
+        	<h3 align="center">Conta Ainda Sem Transações</h3>        	
         	
         	
-        	<br>br><br><br><br>
+        	<br><br><br><br>
         	
         </div> <!-- Fim row 2 -->
             
@@ -158,8 +158,49 @@
         </div>
      </div>
     
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Rodape -->
+    
+    <footer id="rodape">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-md-2">
+            <span class="img-logo">Spotify</span>
+          </div>
+
+          <div class="col-md-2">
+            <h4>company</h4>
+            <ul class="nav">
+            </ul>
+          </div>
+
+          <div class="col-md-2">
+            <h4>comunidades</h4>
+            <ul class="nav">
+            </ul>
+          </div>
+
+          <div class="col-md-2">
+            <h4>links uteis</h4>
+            <ul class="nav">
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <ul class="nav">
+              <li class="item-rede-social"><a href=""><img src="imagens/facebook.png"></a></li>
+              <li class="item-rede-social"><a href=""><img src="imagens/twitter.png"></a></li>
+              <li class="item-rede-social"><a href=""><img src="imagens/instagram.png"></a></li>
+            </ul>
+          </div>
+
+        </div><!-- /row -->
+      </div>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>

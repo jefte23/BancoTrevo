@@ -24,6 +24,7 @@ import model.Transacao;
  */
 @WebServlet("/transacao")
 public class ServeletTransacao extends HttpServlet {
+	public static final String CONTA_SESSION = "contaCliente";
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -55,25 +56,27 @@ public class ServeletTransacao extends HttpServlet {
 		// Obter contas
 		ArrayList<Conta> conta = cd.getConta(c.getIdCliente());
 		
-		
-		// Verificar se o usuario é valido
-		if (cd.isContaCliente(idconta)) {
+	
+		// Obtem conta selecionada
+		Conta ct = cd.getUnicaConta(idconta);
+			
+		request.getSession().setAttribute(CONTA_SESSION, ct);		
+			
+		TransacaoDAO td = new TransacaoDAO(conexao);
 
-			TransacaoDAO td = new TransacaoDAO(conexao);
+		// Obtet transações da conta solicitada
+		ArrayList<Transacao> transacoes = td.getConta(idconta);
 
-			// Obtet transações da conta solicitada
-			ArrayList<Transacao> transacoes = td.getConta(idconta);
+		// Variavel para calcular valor total da conta corrente
+		float extratoConta = 0;
 
-			// Variavel para calcular valor total da conta corrente
-			float extratoConta = 0;
-
-			// Calcula extrato bancario
-			for (int i = 0; i < transacoes.size(); i++) {
-				if (transacoes.get(i).getTipoTransacao().equals("C")
-						|| transacoes.get(i).getTipoTransacao().equals("c")) {
-					extratoConta += transacoes.get(i).getValorTransacao();
-				} else {
-					extratoConta -= transacoes.get(i).getValorTransacao();
+		// Calcula extrato bancario
+		for (int i = 0; i < transacoes.size(); i++) {
+			if (transacoes.get(i).getTipoTransacao().equals("C")
+					|| transacoes.get(i).getTipoTransacao().equals("c")) {
+				extratoConta += transacoes.get(i).getValorTransacao();
+			} else {
+				extratoConta -= transacoes.get(i).getValorTransacao();
 				}
 			}
 
@@ -87,7 +90,7 @@ public class ServeletTransacao extends HttpServlet {
 
 			rd.forward(request, response);
 
-		} else {
+/*		} else {
 
 			// Criar atributo novo
 			request.setAttribute("conta", conta);
@@ -98,7 +101,7 @@ public class ServeletTransacao extends HttpServlet {
 			rd.forward(request, response);
 
 		}
-
+*/
 	}
 
 }

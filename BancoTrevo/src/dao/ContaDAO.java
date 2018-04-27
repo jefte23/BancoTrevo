@@ -84,4 +84,40 @@ public class ContaDAO {
 		}
 		return contas;
 	}
+	// Metodo que retorna Conta Selecionada pelo cliente
+	public Conta getUnicaConta(int idconta) {
+
+		// Instanciar os objetos
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Conta contas = null;
+
+		// Verifica se conta Existe para esté cliente
+		try {
+
+			// Prepara o SQL
+			String sql = "SELECT idcliente, idconta, numeroconta, agenciaconta, tipoconta FROM banco.conta WHERE idconta = ?";
+			ps = conexao.prepareStatement(sql);
+
+			// Seta o parametro do SQL
+			ps.setInt(1, idconta);
+
+			// Execulta o SQL
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				contas = new Conta(rs.getInt("idcliente"), rs.getInt("idconta"), rs.getString("numeroconta"),
+						rs.getString("agenciaConta"), rs.getString("tipoConta"));
+			}
+
+			rs.close();
+			ps.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return contas;
+	}	
+	
+	
 }

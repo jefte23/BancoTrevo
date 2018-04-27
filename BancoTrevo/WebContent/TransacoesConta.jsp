@@ -18,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Home</title>
+    <title>Transações</title>
 
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -93,11 +93,11 @@
     <div class="container">
 		<div class="row">
             <div class="col-xs-6  marcador">
-        		<h3 align="center">Bem vindo, <%=c.getNomeCliente() %></h3>
+        		<h3 align="center"></h3>
             </div>
 
             <div class="col-xs-6  marcador">
-            <h3 align="center">As contas correntes em seu nome</h3>
+            <h3 align="center"><%=c.getNomeCliente() %>, As contas correntes em seu nome</h3>
             
             <table class="table table-bordered table-hover">
 			      <thead align="center">
@@ -132,21 +132,19 @@
         </div>
 	</div>
 </section>
-   
+   <%int idconta = 0; %>
         
        <!-- Fim row 1 -->
         
  	<div class="row">
-       	<div class="col-xs-3  marcador">
+       	<div class="col-xs-1  marcador">
         	<h1 align="center"></h1>
         </div>
         <div class="col-xs-6  marcador">
-        	<h1 align="center">Transações Bancarias</h1>
+        	<h2 align="center">Transações Bancarias</h2>
         	<%float extrato = (float) request.getAttribute("extratoConta"); %>
         	
-        	<br><br>
-        	<h3>Valor Disponivel: <Span></Span><%=extrato %>	</h3>
-            	
+        	<br>            	
             	<table class="table table-bordered table-hover">
 			      <thead align="center">
 			        <tr>
@@ -156,7 +154,7 @@
 			        </tr>
 			      </thead>        	
 			      
-			      		    <%
+			<%
 				List<Transacao> transacaos = (List<Transacao>) request.getAttribute("transacoes");
 				for (int i = 0; i< transacaos.size();i++){
 			%>
@@ -166,24 +164,107 @@
 						<td align="center"> <%=transacaos.get(i).getDataTransacao() %> </td>
 						<td align="center"> <%=transacaos.get(i).getTipoTransacao() %> </td>
 						<td align="center"> <%=transacaos.get(i).getValorTransacao() %> </td>
+				
+							<%
+								idconta = transacaos.get(i).getIdConta();
+							%>
+				
+				
 					</tr>
 				</tbody>
+				
 				<%
 					}
 				%>
 				</table>
+				
+				<br>
+        		<h3>Valor Disponivel R$ <Span></Span><%=extrato %>	</h3>
+        		
+        		<br><br>
         	
 
         	
         </div> <!-- Fim row 2 -->
             
-        <div class="col-xs-3  marcador">
+        <div class="col-xs-4  marcador">
+        	<h2 align="center">Cadastrar Transação</h2>
+        	
+          <form action="cadastroOperacao">
+
+            <div class="form-group">
+               <label for="dataTransacao">Data</label>
+               <input type="date" class="form-control" name="datatransacao" id="datatransacao">
+            </div>
+            <div class="form-group">
+                <label for="valortransacao">Valor da transação</label>
+                <input type="number" class="form-control" id="valortrasacao" name="valortransacao" placeholder="000.00">  
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" value="d" name="tipotransacao">Débito
+              </label>
+
+              <label>
+                <input type="radio" value="c" name="tipotransacao">Credito
+              </label>
+            </div>
+            
+            <br>
+            <button type="submit" class="btn btn-default">Cadastrar</button>
+          </form>
+        </div>
+        </div>
+        
+             
+        <div class="col-xs-2  marcador">
         	<h1 align="center"></h1>
         </div>
-     </div>
+
     
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Rodape -->
+    
+    <footer id="rodape">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-md-2">
+            <span class="img-logo">Trevo</span>
+          </div>
+
+          <div class="col-md-2">
+            <h4>company</h4>
+            <ul class="nav">
+            </ul>
+          </div>
+
+          <div class="col-md-2">
+            <h4>comunidades</h4>
+            <ul class="nav">
+            </ul>
+          </div>
+
+          <div class="col-md-2">
+            <h4>links uteis</h4>
+            <ul class="nav">
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <ul class="nav">
+              <li class="item-rede-social"><a href=""><img src="imagens/facebook.png"></a></li>
+              <li class="item-rede-social"><a href=""><img src="imagens/twitter.png"></a></li>
+              <li class="item-rede-social"><a href=""><img src="imagens/instagram.png"></a></li>
+            </ul>
+          </div>
+
+        </div><!-- /row -->
+      </div>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
