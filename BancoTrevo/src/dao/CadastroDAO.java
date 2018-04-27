@@ -56,7 +56,6 @@ public class CadastroDAO {
 		PreparedStatement ps = null;
 		boolean resultado = false;
 
-		// Verificar se o cliente existe no BD
 		try {
 
 			// Preparar o SQL

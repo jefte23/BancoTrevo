@@ -68,7 +68,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li> </li>
             <li> <a href="#">empresa</a> </li>
-            <li> <a href="#">Aplicações</a> </li>
+            <li> <a  href="contas">Conta Corrente</a> </li>
  
             <li class="dropdown"> 
              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -93,30 +93,38 @@
     <div class="container">
 		<div class="row">
             <div class="col-xs-6  marcador">
-        		<h3 align="center">Bem vindo, <%=c.getNomeCliente() %></h3>
+        		<h3 align="center"><%=c.getNomeCliente() %></h3>
             </div>
-
-            <div class="col-xs-6  marcador">
-            <h3 align="center">As contas correntes em seu nome</h3>
-            
-           </div>
        </div>
 	</div>
-</section>
+	</section>
  
         
     <!-- Fim row 1 -->
         
  	<div class="row">
        	<div class="col-xs-3  marcador">
-        	<h1 align="center"></h1>
-        </div>
+       		<h1></h1>
+       	</div>
+            <div class="col-xs-6  marcador">
+            <br>
+            	<h3 align="center">Ocorreu uma falha no Cadastro da Transação</h3>
+            
+            	<h4 align="center">Por favor, tente novamente em outro momento</h4>
+            
+           </div>
+           
+         <div class="col-xs-3  marcador">
+       		<h1></h1>
+       	</div>
+    </div>
 <!-- Fim row 2 -->
             
         <div class="col-xs-3  marcador">
         	<h1 align="center"></h1>
         </div>
-     </div>
+
+<br><br><br><br><br><br><br>
     
 <!-- Rodape -->
     

@@ -122,7 +122,7 @@
 							<a href="transacao?idconta=<%=contas.get(i).getIdConta()%>"><%=contas.get(i).getNumeroConta() %></a>
 						</td>
 						<td align="center"> 
-							<a href="transacao?idconta=<%=contas.get(i).getIdConta()%>"><%=contas.get(i).getNumeroConta() %></a>
+							<a href="transacao?idconta=<%=contas.get(i).getIdConta()%>"><%=contas.get(i).getAgenciaConta() %></a>
 						</td>
 
 
@@ -145,7 +145,7 @@
        	<div class="col-xs-1  marcador">
         	<h1 align="center"></h1>
         </div>
-        <div class="col-xs-6  marcador">
+        <div class="col-xs-5  marcador">
         	<h2 align="center">Transações Bancarias</h2>
         	<%float extrato = (float) request.getAttribute("extratoConta"); %>
         	
@@ -190,25 +190,32 @@
         	
 
         	
-        </div> <!-- Fim row 2 -->
+        </div> 
+
+       	<div class="col-xs-1  marcador">
+        	<h1 align="center"></h1>
+        </div>
+             
+<!-- Fim row 2 -->
             
         <div class="col-xs-4  marcador">
         	<h2 align="center">Cadastrar Transação</h2>
         	
+          
           <form action="cadastroTransacao">
 
-            <div class="form-group">
-               <label for="selecionaConta">Data</label>
-                <%
-					List<Conta> conta = (List<Conta>) request.getAttribute("conta");
-					for (int i = 0; i< contas.size();i++){
-				%>
-				<select multiple="multiple">
-					<option value="<%conta.get(i).getIdConta();%>" class="form-control" name="idconta"><%=conta.get(i).getIdConta() %></option>					
-				</select>
-               <%} %>
-            </div>
+               <label for="selecionaConta">Conta Corrente</label>
 
+				<select name="idconta">
+	                <%
+						List<Conta> conta = (List<Conta>) request.getAttribute("conta");
+						for (int i = 0; i< contas.size();i++){
+					%>
+						<option value="<%=conta.get(i).getIdConta()%>" class="form-control" >
+							<%=conta.get(i).getNumeroConta() %>   |   <%=conta.get(i).getAgenciaConta() %>
+						</option>					
+	               <%} %>
+				</select>
 
             <div class="form-group">
                <label for="dataTransacao">Data</label>
@@ -239,7 +246,7 @@
         	<h1 align="center"></h1>
         </div>
 
-    
+<br><br><br>    
 <!-- Rodape -->
     
     <footer id="rodape">

@@ -33,12 +33,12 @@ public class ServletCadastroTransacao extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		// Recuperar os parametros
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate datatransacao = LocalDate.parse(request.getParameter("datatransacao"), formatter);
@@ -46,25 +46,26 @@ public class ServletCadastroTransacao extends HttpServlet {
 		float valortransacao = Float.parseFloat(request.getParameter("valortransacao"));
 		int idconta = Integer.parseInt(request.getParameter("idconta"));
 		
+		
 		// Recuperar os parametros
 		Connection conexao = Conexao.getConexao();
 		
-		// Instanciar objeto ClienteDAO
+		// Instanciar objeto CadastraTransacaoDAO
 		CadastraTransacaoDAO c = new CadastraTransacaoDAO(conexao);
 		
-		c.getCadastro(datatransacao, tipotransacao, valortransacao, idconta);
 		
-		if (c.getCadastro(datatransacao, tipotransacao, valortransacao, idconta)) {
+		boolean resultado = false;
+		resultado = c.getCadastro(datatransacao, tipotransacao, valortransacao, idconta); 
+		
+		if (resultado) {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("transacaoCadastrada.jsp");
+			rd.forward(request, response);
+		
 		}else {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("SemExtrato.jsp");
+			rd.forward(request, response);
 		}
-		
-		
-		
-		
 	}
-
 }
